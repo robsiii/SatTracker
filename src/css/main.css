@@ -16,8 +16,6 @@ src: url('../fonts/Roboto-Regular.ttf');
 }
 
 
-
-
 #cesiumContainer
 {
   position: absolute;
@@ -38,26 +36,10 @@ src: url('../fonts/Roboto-Regular.ttf');
   width: 30%;
 }
 
-h1{
-  font-size:40px;
-  margin: auto;
-  text-align: center;
-  width: 100%;
-  text-transform: uppercase;
-  color:white;
-  margin-top:60px;
-  font-family: roboto;
-}
-
-.red-line{
-  margin-top:3px;
-  margin-left:16%;
+.logo{
   width: 130px;
-  background-color: red;
-  height:3px;
-  position: absolute;
-  animation: line 0.5s cubic-bezier(0.285, 0.365, 0.240, 0.905) 1;
-  transform-origin: top left;
+  margin-left: 40px;
+  margin-top:20px;
 }
 
 @keyframes line{
@@ -73,15 +55,15 @@ h1{
 {
   margin-top:60px;
   margin-left:40px;
-  width:10%;
+  width:5%;
   color:white;
-  font-family: roboto;
+  font-family: space;
 
 }
 
 .form-style
 {
-  width: 180px;
+  width: 150px;
   margin-bottom: 10px;
   border-bottom: solid 1px white;
   background-image: url(../img/next.png);
@@ -104,8 +86,8 @@ h1{
 
 .form-style img
 {
-  padding-top: 5px;
-  width: 25px;
+  padding-top: 13px;
+  width: 15px;
   display: inline-block;
   float: right;
   position: absolute;

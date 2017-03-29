@@ -15,8 +15,7 @@
 
 <body>
   <div class="left_menu">
-    <h1>Sat Tracker</h1>
-    <span class=red-line></span>
+    <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
     <div class="filter">
       <div class="form-style">
         <select class="text-form" name="country">
