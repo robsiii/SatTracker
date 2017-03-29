@@ -28,6 +28,10 @@
   <div class="left_menu">
     <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
     <div class="filter">
+     <div class="form-style">
+       <label for="name">Name</label>
+       <input type="text" name="name" id="name">  
+     </div>
       <div class="form-style">
         <select class="text-form" name="country">
               <option value="contry">Country</option>
@@ -38,41 +42,14 @@
         <img src="dist/img/next.png" alt="options">
       </div>
       <div class="form-style">
-        <select class="text-form" name="year">
-              <option value="contry">Year</option>
-              <option value="launched">2001</option>
-              <option value="ending">2002</option>
-              <option value="status">2003</option>
-      		  </select>
-        <img src="dist/img/next.png" alt="options">
+       <label for="year">Year</label>
+       <input type="range" name="year" id="year">
       </div>
       <div class="form-style">
-        <select class="text-form" name="status">
-              <option value="contry">Status</option>
-              <option value="launched">GPS</option>
-              <option value="ending">Photo</option>
-              <option value="status">2003</option>
-      		  </select>
-        <img src="dist/img/next.png" alt="options">
+        <label for="weight">Weight</label>
+        <input type="range" name="weight" id="weight">
       </div>
-      <div class="form-style">
-        <select class="text-form" name="status">
-              <option value="contry">Status</option>
-              <option value="launched">GPS</option>
-              <option value="ending">Photo</option>
-              <option value="status">2003</option>
-      		  </select>
-        <img src="dist/img/next.png" alt="options">
-      </div>
-      <div class="form-style">
-        <select class="text-form" name="status">
-              <option value="contry">Status</option>
-              <option value="launched">GPS</option>
-              <option value="ending">Photo</option>
-              <option value="status">2003</option>
-      		  </select>
-        <img src="dist/img/next.png" alt="options">
-      </div>
+     
     </div>
   </div>
   <div class="pop_up">
