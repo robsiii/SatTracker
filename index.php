@@ -1,3 +1,6 @@
+<?php
+//  include 'dist/php/tracking.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-  <title>Hello World!</title>
+  <title>SatTracker</title>
   <script src="dist/Cesium/Cesium.js"></script>
   <style>
     @import url(dist/Cesium/Widgets/widgets.css);

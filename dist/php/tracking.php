@@ -139,4 +139,3 @@ foreach($all_sats -> Observatory[1] as $_key => $_sat) {
 echo '<pre>';
 print_r($sats);
 echo '</pre>';
-exit;

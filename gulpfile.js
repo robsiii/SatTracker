@@ -15,7 +15,8 @@ const gulp = require('gulp'),
 gulp.task('css', function () {
   return gulp.src([
         './src/css/reset.css',
-        './src/css/main.css'])
+        './src/css/main.css'
+  ])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(concatCss("main.min.css"))
@@ -33,8 +34,9 @@ gulp.task('css', function () {
 // JS task
 gulp.task('js', function () {
   return gulp.src([ // Get JS files (in order)
+            './src/js/converter.js',
             './src/js/script.js'
-        ])
+  ])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(babel({
