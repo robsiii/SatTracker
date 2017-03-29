@@ -84,11 +84,17 @@ h1{
   width: 180px;
   margin-bottom: 10px;
   border-bottom: solid 1px white;
+  background-image: url(../img/next.png);
+  position: relative;
 }
-
+.text-form
+{
+  position: relative;
+  z-index: 1;
+}
 .form-style select
 {
-  width: 140px;
+  width: 100%;
   height: 40px;
   padding-top: 10px;
   border:none;
@@ -102,6 +108,9 @@ h1{
   width: 25px;
   display: inline-block;
   float: right;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 /*pop up*/
 .pop_up
