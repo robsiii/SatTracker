@@ -29,6 +29,8 @@ var ecef = [100, 100, 100];
 
 console.log(xyzllh(ecef));
 
+console.log(sats);
+
 class sat {
   constructor(name) {
     this.name = name;
@@ -37,6 +39,6 @@ class sat {
 
 var satellites = [];
 
-//for (var i = 0; i < sats.Observatory[1].length; i++) {
-//    satellites.push(new sat(sats.Observatory[1][i].Id));
-//}
+for (var i = 0; i < sats.Observatory[1].length; i++) {
+//    satellites.push(new sat());
+}

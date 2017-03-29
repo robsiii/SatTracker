@@ -1,6 +1,9 @@
 <?php
 if (! $sats = $Cache->read('sats')) {
   $date = array(0 => date('Y-m-d\TH:i:s', strtotime('-1 hour')).'.000Z', 1 => date('Y-m-d\TH:i:s', time()).'.000Z');
+  
+  $norad_url = 'https://heliophysicsdata.gsfc.nasa.gov/websearch/dispatcher?action=GET_SPASE_XML_ACTION&save=true&resId=';
+  $info_url = 'https://nssdc.gsfc.nasa.gov/nmc/spacecraftDisplay.do?id=';
 
   function GET_api ($what) {
       // Instantiate curl
@@ -17,21 +20,10 @@ if (! $sats = $Cache->read('sats')) {
       return $result;
   }
 
-  function GET_norad ($url) {
+  function GET_info ($url, $id) {
       // Instantiate curl
       $curl = curl_init();
-      curl_setopt($curl, CURLOPT_URL, 'https://heliophysicsdata.gsfc.nasa.gov/websearch/dispatcher?action=GET_SPASE_XML_ACTION&save=true&resId=' . $url);
-      curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-      $result = curl_exec($curl);
-      curl_close($curl);
-
-      return $result;
-  }
-
-  function GET_info ($id) {
-      // Instantiate curl
-      $curl = curl_init();
-      curl_setopt($curl, CURLOPT_URL, 'https://nssdc.gsfc.nasa.gov/nmc/spacecraftDisplay.do?id=' . $id);
+      curl_setopt($curl, CURLOPT_URL, $url . $id);
       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
       $result = curl_exec($curl);
       curl_close($curl);
@@ -81,7 +73,7 @@ if (! $sats = $Cache->read('sats')) {
       if (isset($_location->Result->Data)) {
 
           if ($_sat->ResourceId != '') {
-              $_info = simplexml_load_string(GET_norad($_sat->ResourceId));
+              $_info = simplexml_load_string(GET_info($norad_url, $_sat->ResourceId));
               $_norad = (string) $_info->Observatory->ResourceHeader->AlternateName[1];
               if ($_norad == '') {
                   $_norad = 'Pas de NORAD';
@@ -89,7 +81,7 @@ if (! $sats = $Cache->read('sats')) {
 
               $_description = (string) $_info->Observatory->ResourceHeader->Description;
 
-              $_html = GET_info($_norad);
+              $_html = GET_info($info_url, $_norad);
 
               $_dom = new DOMDocument;
               $_dom->loadHTML($_html);

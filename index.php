@@ -7,7 +7,6 @@
   $Cache = new Cache(ROOT.'/dist/php/temp', 60);
 
   require 'dist/php/tracking.php';
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +17,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
   <title>Sat Tracker</title>
   <script src="dist/Cesium/Cesium.js"></script>
+  <script>
+    var sats = <?= $sats ?>;
+  </script>
   <style>
     @import url(dist/Cesium/Widgets/widgets.css);
   </style>
