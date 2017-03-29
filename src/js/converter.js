@@ -8,6 +8,11 @@
           == if string comes in - sometimes works, sometimes not !==
 */
 
+var EARTH_A;
+var EARTH_B;
+var EARTH_F;
+var EARTH_Ecc;
+var EARTH_Esq;
 
 // =======================================================================
 
@@ -436,8 +441,3 @@ function xyzllh(xvec)
   return llhvec;
 
 }
-
-
-// =======================================================================
-
-//
