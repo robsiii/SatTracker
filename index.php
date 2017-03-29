@@ -4,7 +4,7 @@
   
   define('ROOT', dirname(__FILE__));
 
-  $Cache = new Cache(ROOT.'/dist/php/temp', 60);
+  $Cache = new Cache(ROOT.'/dist/php/temp', 6000);
 
   require 'dist/php/tracking.php';
 ?>

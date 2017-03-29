@@ -121,8 +121,10 @@ if (! $sats = $Cache->read('sats')) {
 
           }
           else $_infos = 'Pas de données';
-
-          $sat = array ('name' => $_sat->Name, 'id' => $_location->Result->Data[1][0]->Id, 'infos' => $_infos, 'date' => date('m-d-Y', strtotime($_sat -> StartTime[1])), 'posX' => $_location->Result->Data[1][0]->Coordinates[1][0]->X[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->X[1])-1], 'posY' => $_location->Result->Data[1][0]->Coordinates[1][0]->Y[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->Y[1])-1], 'posZ' => $_location->Result->Data[1][0]->Coordinates[1][0]->Z[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->Z[1])-1]);
+        
+          $_pos = array($_location->Result->Data[1][0]->Coordinates[1][0]->X[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->X[1])-1], $_location->Result->Data[1][0]->Coordinates[1][0]->Y[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->Y[1])-1], $_location->Result->Data[1][0]->Coordinates[1][0]->Z[1][count($_location->Result->Data[1][0]->Coordinates[1][0]->Z[1])-1]);
+        
+          $sat = array ('name' => $_sat->Name, 'id' => $_location->Result->Data[1][0]->Id, 'infos' => $_infos, 'date' => date('m-d-Y', strtotime($_sat -> StartTime[1])), 'pos' => $_pos);
 
           $sats[] = $sat;
       }
