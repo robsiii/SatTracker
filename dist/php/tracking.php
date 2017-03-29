@@ -135,5 +135,5 @@ if (! $sats = $Cache->read('sats')) {
           $sats[] = $sat;
       }
   }
-  $Cache->write('sats', $sats);
+  $Cache->write('sats', json_encode($sats));
 }

@@ -15,6 +15,11 @@ class Cache {
   }
   
   public function read ($filename) {
-    return file_get_contents($this->dirname.'/'.$filename);
+    $file = $this->dirname.'/'.$filename;
+    $lifetime = (time() - filemtime($file))/60;
+    if ($lifetime > $this->duration) {
+      return false;
+    }
+    return file_get_contents($file);
   }
 }
