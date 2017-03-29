@@ -1,5 +1,13 @@
 <?php
-//  include 'dist/php/tracking.php';
+  $time = microtime(TRUE);
+  require 'dist/php/class/class.cache.php';
+  
+  define('ROOT', dirname(__FILE__));
+
+  $Cache = new Cache(ROOT.'/dist/php/temp', 60);
+
+  require 'dist/php/tracking.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,3 +94,4 @@
 </body>
 
 </html>
+<?= round(microtime(TRUE) - $time, 3);
