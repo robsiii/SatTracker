@@ -46,20 +46,20 @@
      </div>
       <div class="form-style">
         <select class="text-form" name="Organisation">
-          <option value="contry">Organisation</option>
-          <option value="contry">NASA-Office of Space Science (United States)</option>
-          <option value="contry">National Aeronautics and Space Administration (United States)</option>
-          <option value="contry">National Oceanic and Atmospheric Administration (United States)</option>
-          <option value="contry">Others</option>
+          <option value="Organisation">Organisation</option>
+          <option value="NASA-Office of Space Science (United States)">NASA-Office of Space Science (United States)</option>
+          <option value="National Aeronautics and Space Administration (United States)">National Aeronautics and Space Administration (United States)</option>
+          <option value="National Oceanic and Atmospheric Administration (United States)">National Oceanic and Atmospheric Administration (United States)</option>
+          <option value="Others">Others</option>
        </select>
         <img src="dist/img/next.png" alt="options">
       </div>
         <label for="year">Launching year</label>
         <div class="range-slider"><span class="year"> 
-          <input type="number" value="1957" min="1957" max="2017"/> <strong class="straight"> - </strong>
-          <input type="number" value="2017" min="1957" max="2017"/></span>
-          <input value="1957" min="1957" max="2017" step="1" type="range" class="but" />
-          <input value="2017" min="1957" max="2017" step="1" type="range" class="but" />
+          <input type="number" value="1959" min="1959" max="2017"/> <strong class="straight"> - </strong>
+          <input type="number" value="2017" min="1959" max="2017"/></span>
+          <input value="1959" min="1959" max="2017" step="1" type="range" class="but" />
+          <input value="2017" min="1959" max="2017" step="1" type="range" class="but" />
         </div>
     </div>
   </div>

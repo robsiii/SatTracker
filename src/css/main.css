@@ -131,18 +131,18 @@ input#year
 
 .exit img
 {
-
-  max-height: 80%;
+  margin-top: 31px;
+  max-height: 48%;
 }
 
 
 @media screen and (max-width: 860px)
 {
-body
-{
-  height: auto;
-  overflow-y: scroll;
-}
+  body
+  {
+    height: auto;
+    overflow-y: scroll;
+  }
 }
 
 /*RANGE*/
@@ -215,8 +215,6 @@ input[type=range]::-webkit-slider-thumb {
   width: 18px;
   margin-top: -8px;
 }
-<<<<<<< HEAD
-=======
 
 /* NAV */
 
