@@ -19,6 +19,24 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 
 document.querySelector('.cesium-viewer-bottom').style.display = "none";
 
+
+// FILTER NAVBAR
+
+var cross = document.querySelector('#cross');
+var menu = document.querySelector('.left_menu');
+var cross_div = document.querySelector('.exit');
+cross.addEventListener('click', function () {
+  if (this.getAttribute('data-open') == 'true') {
+    this.setAttribute('data-open', false);
+    menu.classList.remove('active');
+    cross_div.classList.remove('active');
+  } else {
+    this.setAttribute('data-open', true);
+    menu.classList.add('active');
+    cross_div.classList.add('active');
+  }
+});
+
 // SATELLITES
 
 class sat {
@@ -87,7 +105,7 @@ handler.setInputAction(function (click) {
   }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-//  SLIDER
+// FILTER SLIDER
 
 var parent = document.querySelector(".range-slider");
 
@@ -109,13 +127,13 @@ rangeS.forEach(function (el) {
 
     numberS[0].value = slide1;
     numberS[1].value = slide2;
-    
+
     filter_date([numberS[0].value, numberS[1].value]);
   }
 });
 
 numberS.forEach(function (el) {
-  el.oninput = function () {
+  el.onblur = function () {
     var number1 = parseFloat(numberS[0].value),
       number2 = parseFloat(numberS[1].value);
 
@@ -127,8 +145,13 @@ numberS.forEach(function (el) {
 
     rangeS[0].value = number1;
     rangeS[1].value = number2;
-    
+
     filter_date([rangeS[0].value, rangeS[1].value]);
+  }
+  el.onkeyup = function () {
+    if (event.keyCode == 13) {
+      el.blur();
+    }
   }
 });
 
@@ -138,24 +161,36 @@ function filter_date(dates) {
     var sat_date = sat_date.getFullYear();
     if (dates[0] > sat_date || dates[1] < sat_date) {
       satellites[i].object.show = false;
-    }
-    else satellites[i].object.show = true;
+    } else satellites[i].object.show = true;
   }
 }
 
-// FILTER NAVBAR
+//  FILTER
 
-var cross = document.querySelector('#cross');
-var menu = document.querySelector('.left_menu');
-var cross_div = document.querySelector('.exit');
-cross.addEventListener('click', function(){
-  if(this.getAttribute('data-open') == 'true'){
-    this.setAttribute('data-open',false);
-    menu.classList.remove('active');
-    cross_div.classList.remove('active');
-  } else {
-    this.setAttribute('data-open',true);
-    menu.classList.add('active');
-    cross_div.classList.add('active');
+var select_org = document.querySelector('select');
+
+select_org.onchange = function () {
+  for (let i = 0; i < satellites.length; i++) {
+    if (this.value == 'Organisation') satellites[i].object.show = true;
+    else {
+      if (this.value == 'Others') {
+        if (satellites[i].infos != 'Pas de données') {
+          satellites[i].object.show = false;
+        } else satellites[i].object.show = true;
+      } else if (satellites[i].infos.country == this.value) {
+        satellites[i].object.show = true;
+      } else satellites[i].object.show = false;
+    }
   }
-});
+}
+
+var search = document.querySelector('#name');
+
+search.onchange = function () {
+    var name = this.value.toLowerCase();
+    for (let i = 0; i < satellites.length; i++) {
+      if (satellites[i].name.toLowerCase().includes(name)) {
+        satellites[i].object.show = true;
+      } else satellites[i].object.show = false;
+    }
+}
