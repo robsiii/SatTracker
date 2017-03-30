@@ -34,7 +34,7 @@
 </head>
 
 <body>
-  <div class="left_menu">
+  <div class="left_menu active">
     <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
     <div class="filter">
      <div class="form-style">
@@ -58,6 +58,9 @@
           <input value="2017" min="1957" max="2017" step="1" type="range" class="but" />
         </div>
     </div>
+  </div>
+  <div class="exit active">
+<img src="dist/img/cross.png" id="cross" alt="quit" data-open="true">
   </div>
   <div id="cesiumContainer">
     <script src="dist/js/script.min.js"></script>

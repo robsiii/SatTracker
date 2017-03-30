@@ -142,3 +142,20 @@ function filter_date(dates) {
     else satellites[i].object.show = true;
   }
 }
+
+// FILTER NAVBAR
+
+var cross = document.querySelector('#cross');
+var menu = document.querySelector('.left_menu');
+var cross_div = document.querySelector('.exit');
+cross.addEventListener('click', function(){
+  if(this.getAttribute('data-open') == 'true'){
+    this.setAttribute('data-open',false);
+    menu.classList.remove('active');
+    cross_div.classList.remove('active');
+  } else {
+    this.setAttribute('data-open',true);
+    menu.classList.add('active');
+    cross_div.classList.add('active');
+  }
+});
