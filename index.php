@@ -31,8 +31,7 @@
     <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
     <div class="filter">
      <div class="form-style">
-       <label for="name">Name</label>
-       <input type="text" name="name" id="name">  
+       <input type="text" name="name" id="name" placeholder="Name">  
      </div>
       <div class="form-style">
         <select class="text-form" name="country">

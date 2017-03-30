@@ -14,15 +14,6 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
 
 });
 
-var blueEllipsoid = viewer.entities.add({
-  name: 'Blue ellipsoid',
-  position: Cesium.Cartesian3.fromDegrees(-114.0, 40.0, 400000.0),
-  ellipsoid: {
-    radii: new Cesium.Cartesian3(100000.0, 100000.0, 100000.0),
-    material: Cesium.Color.GREEN
-  }
-});
-
 document.querySelector('.cesium-viewer-bottom').style.display = "none";
 
 class sat {
@@ -36,11 +27,21 @@ class sat {
     this.object = new Cesium.Entity({
       id: this.id,
       name: this.name,
-      position: new Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2]),
+      position: new Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2] * 1000),
       ellipsoid: {
-        radii: new Cesium.Cartesian3(100000.0, 100000.0, 100000.0),
-        material: Cesium.Color.RED
+        radii: new Cesium.Cartesian3(50000.0, 50000.0, 50000.0),
+        material: Cesium.Color.RED,
+        
+      },
+      label : {
+        text : this.name,
+        font : '10pt monospace',
+        style: Cesium.LabelStyle.FILL_AND_OUTLINE,
+        outlineWidth : 2,
+        verticalOrigin : Cesium.VerticalOrigin.BOTTOM,
+        pixelOffset : new Cesium.Cartesian2(0, -25)
       }
+      
     });
     this.create();
   }
