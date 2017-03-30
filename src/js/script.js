@@ -11,6 +11,7 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   geocoder: false,
   sceneModePicker: false,
   animation: false,
+  skyAtmosphere: false
   //  imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
   //    url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
   //  })
@@ -53,8 +54,8 @@ class sat {
       name: this.name,
       position: new Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2] * 1000),
       ellipsoid: {
-        radii: new Cesium.Cartesian3(50000.0, 50000.0, 50000.0),
-        material: Cesium.Color.RED,
+        radii: new Cesium.Cartesian3(70000.0, 70000.0, 70000.0),
+        material: Cesium.Color.GREEN
 
       },
       label: {
@@ -67,15 +68,8 @@ class sat {
       }
 
     });
-    this.popup = new Cesium.Entity(that.name);
-    this.popup = {
-      title: ''
-    };
-    this.popup.description = {
-      getValue: function () {
-        return '<div class="pop_up"><div class="exit"></div><h2>' + that.name + '</h2><p>Lauched : ' + that.date + '</p><p> Country : ' + that.infos.country + '</p><p> Function : ' + that.infos.discipline + '</p><p> Mass : ' + that.infos.mass + '</p><p>Description : ' + that.infos.description + '</p></div>';
-      }
-    };
+    this.popup = document.createElement('div');
+    this.popup.className = 'test';
 
     this.create();
   }
@@ -93,14 +87,18 @@ for (var i = 0; i < sats.length; i++) {
 
 console.log(satellites);
 
-// INFOBOX
+// POPUP
+
+var last_popup;
 
 var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
 handler.setInputAction(function (click) {
   var pickedObject = viewer.scene.pick(click.position);
   for (let i = 0; i < satellites.length; i++) {
     if (Cesium.defined(pickedObject) && (pickedObject.id == satellites[i].object)) {
-      viewer.selectedEntity = satellites[i].popup;
+      if (last_popup != undefined) document.querySelector('body').removeChild(last_popup);
+      document.querySelector('body').appendChild(satellites[i].popup);
+      last_popup = satellites[i].popup;
     }
   }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
@@ -187,10 +185,10 @@ select_org.onchange = function () {
 var search = document.querySelector('#name');
 
 search.onchange = function () {
-    var name = this.value.toLowerCase();
-    for (let i = 0; i < satellites.length; i++) {
-      if (satellites[i].name.toLowerCase().includes(name)) {
-        satellites[i].object.show = true;
-      } else satellites[i].object.show = false;
-    }
+  var name = this.value.toLowerCase();
+  for (let i = 0; i < satellites.length; i++) {
+    if (satellites[i].name.toLowerCase().includes(name)) {
+      satellites[i].object.show = true;
+    } else satellites[i].object.show = false;
+  }
 }
