@@ -49,10 +49,10 @@
       </div>
     </div>
     <div class="nav">
-      <a href="about.html">ABOUT</a>
-    </div>
+     <span id="about-link"><a href="about.html">ABOUT</a></span>
+     <span><img src="dist/img/logo.png" alt="sattrack" class="logo"></span>
+  </div>
     <div class="left_menu active">
-      <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
       <div class="filter">
         <div class="form-style">
           <input type="text" name="name" id="name" placeholder="Name">
@@ -67,7 +67,7 @@
        </select>
           <img src="dist/img/next.png" alt="options">
         </div>
-        <label for="year">Launching year</label>
+        <label for="year">Year</label>
         <div class="range-slider"><span class="year"> 
           <input type="number" value="1959" min="1959" max="2017"/> <strong class="straight"> - </strong>
           <input type="number" value="2017" min="1959" max="2017"/></span>

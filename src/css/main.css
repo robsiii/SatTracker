@@ -103,24 +103,22 @@ body {
 /*LEFT MENU*/
 .left_menu
 {
-  color: white;
+  color: #fff;
   position: fixed;
+  top:10px;
   z-index: 30;
   height: auto;
   width: 180px;
-  background-color: black;
+  background-color: transparent;
   display: inline-block;
-  transform: translateX(-100%);
-  transition: 0.5s linear;
-}
-.left_menu.active{
-  transform: translateX(0);
+  transition: s linear;
 }
 
-.logo{
-  width: 156px;
-  margin-left: 20px;
-  margin-top:20px;
+
+.logo {
+
+  width: 40px;
+  height: 40px;
 }
 
 .filter
@@ -128,7 +126,7 @@ body {
   margin-left:20px;
   width:5%;
   color:white;
-  font-family: roboto;
+  font-family: 'Lato';
 
 }
 input#name
@@ -181,29 +179,10 @@ input#year
   border-bottom: solid 1px white;
 }
 
-.exit
-{
-  display: inline-block;
-  position: absolute;
-  width: 45px;
-  height: 45px;
-  z-index: 40;
-  margin-left: 180px;
-  background: black;
-  transition: 0.5s linear;
-  transform: translateX(-400%);
+.exit img {
+  
+  display: none;
 }
-
-.exit.active{
-  transform: translateX(0);
-}
-
-.exit img
-{
-  margin-top: 31px;
-  max-height: 48%;
-}
-
 
 @media screen and (max-width: 860px)
 {
@@ -285,27 +264,37 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -8px;
 }
 
-/* NAV */
-
 .nav {
 
   position: fixed;
   z-index: 10;
   float:right;
-  right: 10px;
-  width: 100px;
+  right: 0px;
+  width: 150px;
   height: 30px;
   color:white;
   font-family: 'Lato';
-  margin-top:20px;
   transition: 1s;
-
+  display: inline-block;
+  margin-top: 15px;
 }
 
 .nav a {
 
   text-decoration: none;
+  
 
+}
+
+#about-link {
+  
+  position: relative;
+  top:-10px;
+}
+
+.nav span {
+  
+  margin-right: 20px;
 }
 
 .nav a:hover {
