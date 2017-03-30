@@ -1,4 +1,4 @@
-<?php
+ <?php
   $time = microtime(TRUE);
   require 'dist/php/class/class.cache.php';
 
