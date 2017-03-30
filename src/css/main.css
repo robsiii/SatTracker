@@ -65,7 +65,6 @@ src: url('../fonts/Roboto-Regular.ttf');
 {
   width: 150px;
   margin-bottom: 10px;
-  background-image: url(../img/next.png);
   position: relative;
 }
 .text-form
@@ -156,3 +155,73 @@ body
 }
 
 }*/
+/*RANGE*/
+
+input {
+  box-shadow: 0;
+  outline: 0;
+}
+
+.range-slider {
+  width: 150px;
+  margin: auto;
+  text-align: center;
+  position: relative;
+  height: 6em;
+  bottom: 70px;
+}
+
+.range-slider svg,
+.range-slider input[type=range] {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.straight {
+  color: #fefefe;
+}
+
+.year {
+  position: relative;
+  top: 100px;
+}
+
+input[type=number] {
+  border: none;
+  text-align: center;
+  color: #fefefe;
+  padding-top: 5px;
+  background: transparent;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number]:invalid,
+input[type=number]:out-of-range {}
+
+input[type=range] {
+  background: #fff;
+  width: 100%;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  cursor: pointer;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  z-index: 2;
+  position: relative;
+  height: 18px;
+  width: 18px;
+  margin-top: -8px;
+}

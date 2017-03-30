@@ -50,10 +50,13 @@
        </select>
         <img src="dist/img/next.png" alt="options">
       </div>
-      <div class="form-style">
-       <label for="year">Launching year</label>
-       <input type="range" name="year" min="1959" max="2017" step="1" id="year">
-      </div>
+        <label for="year">Launching year</label>
+        <div class="range-slider"><span class="year"> 
+          <input type="number" value="1980" min="1957" max="2017"/> <strong class="straight"> - </strong>
+          <input type="number" value="2000" min="1957" max="2017"/></span>
+          <input value="1980" min="1957" max="2017" step="1" type="range" class="but" />
+          <input value="2000" min="1957" max="2017" step="1" type="range" class="but" />
+        </div>
     </div>
   </div>
   <div id="cesiumContainer">

@@ -39,7 +39,7 @@ class sat {
       },
       label: {
         text: this.name,
-        font: '10pt monospace',
+        font: '10pt arial',
         style: Cesium.LabelStyle.FILL_AND_OUTLINE,
         outlineWidth: 2,
         verticalOrigin: Cesium.VerticalOrigin.BOTTOM,
@@ -47,7 +47,8 @@ class sat {
       }
 
     });
-    this.popup = new Cesium.Entity(this.name);
+    this.popup = new Cesium.Entity(that.name);
+    this.popup = {title : ''};
     this.popup.description = {
       getValue: function () {
         return '<div class="pop_up"><div class="exit"></div><h2>' + that.name + '</h2><p>Lauched : ' + that.date + '</p><p> Country : ' + that.infos.country + '</p><p> Function : ' + that.infos.discipline + '</p><p> Mass : ' + that.infos.mass + '</p><p>Description : ' + that.infos.description + '</p></div>';
@@ -79,3 +80,48 @@ handler.setInputAction(function (click) {
     }
   }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+(function() {
+
+    var parent = document.querySelector(".range-slider");
+    if (!parent) return;
+
+    var
+        rangeS = parent.querySelectorAll("input[type=range]"),
+        numberS = parent.querySelectorAll("input[type=number]");
+
+    rangeS.forEach(function(el) {
+        el.oninput = function() {
+            var slide1 = parseFloat(rangeS[0].value),
+                slide2 = parseFloat(rangeS[1].value);
+
+            if (slide1 > slide2) {
+                [slide1, slide2] = [slide2, slide1];
+                // var tmp = slide2;
+                // slide2 = slide1;
+                // slide1 = tmp;
+            }
+
+            numberS[0].value = slide1;
+            numberS[1].value = slide2;
+        }
+    });
+
+    numberS.forEach(function(el) {
+        el.oninput = function() {
+            var number1 = parseFloat(numberS[0].value),
+                number2 = parseFloat(numberS[1].value);
+
+            if (number1 > number2) {
+                var tmp = number1;
+                numberS[0].value = number2;
+                numberS[1].value = tmp;
+            }
+
+            rangeS[0].value = number1;
+            rangeS[1].value = number2;
+
+        }
+    });
+
+})();
