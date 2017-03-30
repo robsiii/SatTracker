@@ -50,7 +50,7 @@
     </div>
     <div class="nav">
      <span id="about-link"><a href="about.html">ABOUT</a></span>
-     <span><img src="dist/img/logo.png" alt="sattrack" class="logo"></span>
+     <span><a href="#"><img src="dist/img/logo.png" alt="sattrack" class="logo"></a></span>
   </div>
     <div class="left_menu active">
       <div class="filter">
