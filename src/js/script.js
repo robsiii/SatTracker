@@ -69,7 +69,10 @@ class sat {
 
     });
     this.popup = document.createElement('div');
-    this.popup.className = 'test';
+    this.popup.className = 'pop-up';
+    this.popup.appendChild(document.createElement('div'));
+    this.popup.children[0].className = 'pop-up-container';
+    this.popup.children[0].innerHTML = '<p class="name">' + this.name + '</p><p>Launched on the ' + this.date + '</p><p>Organisation : ' + this.infos.country + '</p><p>Mass : ' + this.infos.mass + '</p><p>' + this.infos.description + '</p>';
 
     this.create();
   }
