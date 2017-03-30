@@ -59,7 +59,7 @@ body {
   margin-left:20px;
   width:5%;
   color:white;
-  font-family: roboto;
+  font-family: 'Lato';
 
 }
 input#name
@@ -338,4 +338,3 @@ input[type=range]::-webkit-slider-thumb {
 .about a {
   text-decoration: none;
 }
->>>>>>> 10161f0b8abdf62e730fecd45ad9c812e6913a29
