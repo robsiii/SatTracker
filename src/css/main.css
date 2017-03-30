@@ -15,6 +15,12 @@ src: url('../fonts/Roboto-Regular.ttf');
 
 }
 
+@font-face {
+font-family: 'lato';
+src: url('../fonts/Roboto-Regular.ttf');
+
+}
+
 
 #cesiumContainer
 {
