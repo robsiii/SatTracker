@@ -1,7 +1,7 @@
 <?php
   $time = microtime(TRUE);
   require 'dist/php/class/class.cache.php';
-  
+
   define('ROOT', dirname(__FILE__));
 
   $Cache = new Cache(ROOT.'/dist/php/temp', 6000);
@@ -38,39 +38,23 @@
     <img src="dist/img/logo_sattrack3.png" alt="sattrack" class="logo">
     <div class="filter">
      <div class="form-style">
-       <input type="text" name="name" id="name" placeholder="Name">  
+       <input type="text" name="name" id="name" placeholder="Name">
      </div>
       <div class="form-style">
-        <select class="text-form" name="country">
-              <option value="contry">Country</option>
-              <option value="launched">France</option>
-              <option value="ending">USA</option>
-              <option value="status">Russia</option>
-      		  </select>
+        <select class="text-form" name="Organisation">
+          <option value="contry">Organisation</option>
+          <option value="contry">NASA-Office of Space Science (United States)</option>
+          <option value="contry">National Aeronautics and Space Administration (United States)</option>
+          <option value="contry">National Oceanic and Atmospheric Administration (United States)</option>
+          <option value="contry">Others</option>
+       </select>
         <img src="dist/img/next.png" alt="options">
       </div>
       <div class="form-style">
-       <label for="year">Year</label>
-       <input type="range" name="year" id="year">
+       <label for="year">Launching year</label>
+       <input type="range" name="year" min="1959" max="2017" step="1" id="year">
       </div>
-      <div class="form-style">
-        <label for="weight">Weight</label>
-        <input type="range" name="weight" id="weight">
-      </div>
-     
     </div>
-  </div>
-  <div class="pop_up">
-    <div class="exit"></div>
-    <h2>JOJO le satellites</h2>
-    <br>
-    <p> Country : France</p>
-    <br>
-    <p>Lauched : 5 October 2012</p>
-    <br>
-    <p>Orbital period : exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <br>
-    <p>Status : lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
   </div>
   <div id="cesiumContainer">
     <script src="dist/js/script.min.js"></script>

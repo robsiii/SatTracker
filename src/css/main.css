@@ -95,13 +95,13 @@ src: url('../fonts/Roboto-Regular.ttf');
   right: 0;
 }
 
-.form-style input 
+.form-style input
 {
-  
+
   width: 100%;
   height: 40px;
-  border-bottom: solid 1px white;
-  
+  border-bottom: solid 1px #019875;
+
 }
 /*pop up*/
 .pop_up
