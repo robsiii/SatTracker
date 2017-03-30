@@ -217,6 +217,35 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -8px;
 }
 
+/* NAV */
+
+.nav {
+  
+  position: fixed;
+  z-index: 10;
+  float:right;
+  right: 0;
+  width: 100px;
+  height: 30px;
+  color:white;
+  font-family: 'Lato';
+  margin-top:20px;
+  transition: 1s;
+  
+}
+
+.nav a {
+  
+  text-decoration: none;
+  
+}
+
+.nav a:hover {
+  
+  opacity: 0.5;
+  transition: 1s;
+}
+
 /* LANDING PAGE */
 
 .landing-container {
@@ -288,6 +317,7 @@ input[type=range]::-webkit-slider-thumb {
   height: 100vh;
   position: absolute;
   font-family: 'Lato';
+  color:white;
 }
 
 .about {
