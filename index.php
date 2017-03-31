@@ -1,5 +1,4 @@
 <?php
-  $time = microtime(TRUE);
   require 'dist/php/class/class.cache.php';
 
   define('ROOT', dirname(__FILE__));
@@ -10,7 +9,7 @@
 ?>
   <!DOCTYPE html>
   <html lang="en">
-  
+
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,7 +18,6 @@
     <link rel="icon" type="image/png" sizes="96x96" href="dist/img/favicon/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="dist/img/favicon/favicon-16x16.png">
     <link rel="manifest" href="/manifest.json">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -30,10 +28,17 @@
       $(window).load(function() {
         $(".landing-container").fadeOut("slow");
       });
+
     </script>
     <script src="dist/Cesium/Cesium.js"></script>
-    <script>var sats = <?= $sats ?>;</script>
-    <style>@import url(dist/Cesium/Widgets/widgets.css);</style>
+    <script>
+      var sats = <?= $sats ?>;
+
+    </script>
+    <style>
+      @import url(dist/Cesium/Widgets/widgets.css);
+
+    </style>
     <link rel="stylesheet" href="dist/css/main.min.css">
   </head>
 
@@ -49,13 +54,14 @@
       </div>
     </div>
     <div class="nav">
-     <span id="about-link"><a href="about.html">ABOUT</a></span>
-     <span><a href="#"><img src="dist/img/logo.png" alt="sattrack" class="logo"></a></span>
-  </div>
+      <span id="about-link"><a href="about.html">ABOUT</a></span>
+      <span><a href="index.php"><img src="dist/img/logo.png" alt="sattrack" class="logo"></a></span>
+    </div>
     <div class="left_menu active">
       <div class="filter">
+        <p>Search</p>
         <div class="form-style">
-          <input type="text" name="name" id="name" placeholder="Name">
+          <input type="text" name="name" id="name" placeholder="Satelitte's name">
         </div>
         <div class="form-style">
           <select class="text-form" name="Organisation">
@@ -67,7 +73,7 @@
        </select>
           <img src="dist/img/next.png" alt="options">
         </div>
-        <label for="year">Year</label>
+        <label for="year">Launched Year</label>
         <div class="range-slider"><span class="year"> 
           <input type="number" value="1959" min="1959" max="2017"/> <strong class="straight"> - </strong>
           <input type="number" value="2017" min="1959" max="2017"/></span>
@@ -85,4 +91,3 @@
   </body>
 
   </html>
-  <?= round(microtime(TRUE) - $time, 3);

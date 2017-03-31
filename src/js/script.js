@@ -11,15 +11,17 @@ var viewer = new Cesium.Viewer('cesiumContainer', {
   geocoder: false,
   sceneModePicker: false,
   animation: false,
-  skyAtmosphere: false
-  //  imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
-  //    url: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer'
-  //  })
+  skyAtmosphere: false,
+  imageryProvider: new Cesium.ArcGisMapServerImageryProvider({
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer'
+  })
 
 });
 
 document.querySelector('.cesium-viewer-bottom').style.display = "none";
 
+viewer.scene._screenSpaceCameraController.minimumZoomDistance = 10000000;
+viewer.scene._screenSpaceCameraController.maximumZoomDistance = 300000000;
 
 // FILTER NAVBAR
 
@@ -55,7 +57,7 @@ class sat {
       position: new Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2] * 1000),
       ellipsoid: {
         radii: new Cesium.Cartesian3(70000.0, 70000.0, 70000.0),
-        material: Cesium.Color.GREEN
+        material: Cesium.Color.RED
 
       },
       label: {
@@ -72,7 +74,8 @@ class sat {
     this.popup.className = 'pop-up';
     this.popup.appendChild(document.createElement('div'));
     this.popup.children[0].className = 'pop-up-container';
-    this.popup.children[0].innerHTML = '<p class="name">' + this.name + '</p><p>Launched on the ' + this.date + '</p><p>Organisation : ' + this.infos.country + '</p><p>Mass : ' + this.infos.mass + '</p><p>' + this.infos.description + '</p>';
+    if (this.infos.country == undefined) this.popup.children[0].innerHTML = '<p class="name">' + this.name + '</p><p>Launched on the ' + this.date + '</p><p>No more data found on this satellite</p>';
+    else this.popup.children[0].innerHTML = '<p class="name">' + this.name + '</p><p>Launched on the ' + this.date + '</p><p>Organisation : ' + this.infos.country + '</p><p>Mass : ' + this.infos.mass + '</p><p>' + this.infos.description + '</p>';
 
     this.create();
   }
@@ -88,23 +91,64 @@ for (var i = 0; i < sats.length; i++) {
   satellites.push(new sat(sats[i].name, sats[i].id, sats[i].date, sats[i].infos, sats[i].pos));
 }
 
-console.log(satellites);
-
 // POPUP
 
 var last_popup;
 
-var handler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
-handler.setInputAction(function (click) {
+// HANDLERS
+var handler_click = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+handler_click.setInputAction(function (click) {
   var pickedObject = viewer.scene.pick(click.position);
-  for (let i = 0; i < satellites.length; i++) {
-    if (Cesium.defined(pickedObject) && (pickedObject.id == satellites[i].object)) {
-      if (last_popup != undefined) document.querySelector('body').removeChild(last_popup);
-      document.querySelector('body').appendChild(satellites[i].popup);
-      last_popup = satellites[i].popup;
+  if (Cesium.defined(pickedObject)) {
+    for (let i = 0; i < satellites.length; i++) {
+      if (pickedObject.id === satellites[i].object && last_popup !== satellites[i].popup) {
+        if (last_popup !== undefined) {
+          last_popup.className = 'pop-up pop-up-anim-reverse';
+          setTimeout(function () {
+            document.querySelector('body').removeChild(last_popup);
+            last_popup = undefined;
+          }, 300);
+        }
+        document.querySelector('body').appendChild(satellites[i].popup);
+        satellites[i].popup.className = 'pop-up pop-up-anim';
+        setTimeout(function () {
+          last_popup = satellites[i].popup;
+        }, 300);
+      }
     }
+  } else
+  if (last_popup !== undefined) {
+    last_popup.className = 'pop-up pop-up-anim-reverse';
+    setTimeout(function () {
+      document.querySelector('body').removeChild(last_popup);
+      last_popup = undefined;
+    }, 300);
   }
 }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
+
+var last_hover;
+
+var handler_hover = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
+handler_hover.setInputAction(function (movement) {
+  var pickedObject = viewer.scene.pick(movement.endPosition);
+  if (Cesium.defined(pickedObject)) {
+    for (let i = 0; i < satellites.length; i++) {
+      if (pickedObject.id === satellites[i].object) {
+        if (pickedObject.id !== last_hover) {
+          if (last_hover !== undefined) last_hover._label._font._value = '10pt arial';
+          satellites[i].object._label._font._value = '15pt arial';
+          last_hover = satellites[i].object;
+        }
+      }
+    }
+  } else {
+    if (last_hover !== undefined) {
+      last_hover._label._font._value = '10pt arial';
+      last_hover = undefined;
+    }
+  }
+}, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
 
 // FILTER SLIDER
 
