@@ -23,23 +23,6 @@ document.querySelector('.cesium-viewer-bottom').style.display = "none";
 viewer.scene._screenSpaceCameraController.minimumZoomDistance = 10000000;
 viewer.scene._screenSpaceCameraController.maximumZoomDistance = 300000000;
 
-// FILTER NAVBAR
-
-var cross = document.querySelector('#cross');
-var menu = document.querySelector('.left_menu');
-var cross_div = document.querySelector('.exit');
-cross.addEventListener('click', function () {
-  if (this.getAttribute('data-open') == 'true') {
-    this.setAttribute('data-open', false);
-    menu.classList.remove('active');
-    cross_div.classList.remove('active');
-  } else {
-    this.setAttribute('data-open', true);
-    menu.classList.add('active');
-    cross_div.classList.add('active');
-  }
-});
-
 // SATELLITES
 
 class sat {
@@ -70,6 +53,19 @@ class sat {
       }
 
     });
+    this.line = new Cesium.Entity({
+      name: 'Line',
+      position: Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2] * 1000),
+      polyline: {
+        positions: [
+                Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], 0),
+                Cesium.Cartesian3.fromDegrees(this.pos[0], this.pos[1], this.pos[2] * 1000)
+            ],
+        width: new Cesium.ConstantProperty(2),
+        material: Cesium.Color.WHITE,
+        followSurface: new Cesium.ConstantProperty(false)
+      }
+    });
     this.popup = document.createElement('div');
     this.popup.className = 'pop-up';
     this.popup.appendChild(document.createElement('div'));
@@ -83,6 +79,10 @@ class sat {
   create() {
     viewer.entities.add(this.object);
   }
+
+  draw_lines() {
+    viewer.entities.add(this.line);
+  }
 }
 
 var satellites = [];
@@ -90,6 +90,27 @@ var satellites = [];
 for (var i = 0; i < sats.length; i++) {
   satellites.push(new sat(sats[i].name, sats[i].id, sats[i].date, sats[i].infos, sats[i].pos));
 }
+
+// LINES
+var button = document.querySelector('.btn');
+var lines_displayed = false;
+for (let i = 0; i < satellites.length; i++) {
+  satellites[i].draw_lines();
+  satellites[i].line.show = false;
+}
+button.onclick = function () {
+  if (lines_displayed) {
+    for (let i = 0; i < satellites.length; i++) {
+      satellites[i].line.show = false;
+      lines_displayed = false;
+    }
+  } else {
+    for (let i = 0; i < satellites.length; i++) {
+      satellites[i].line.show = true;
+      lines_displayed = true;
+    }
+  }
+};
 
 // POPUP
 
@@ -101,7 +122,7 @@ handler_click.setInputAction(function (click) {
   var pickedObject = viewer.scene.pick(click.position);
   if (Cesium.defined(pickedObject)) {
     for (let i = 0; i < satellites.length; i++) {
-      if (pickedObject.id === satellites[i].object && last_popup !== satellites[i].popup) {
+      if (pickedObject.id === satellites[i].object && last_popup !== satellites[i].popup || pickedObject.id === satellites[i].line && last_popup !== satellites[i].popup) {
         if (last_popup !== undefined) {
           last_popup.className = 'pop-up pop-up-anim-reverse';
           setTimeout(function () {
@@ -206,7 +227,11 @@ function filter_date(dates) {
     var sat_date = sat_date.getFullYear();
     if (dates[0] > sat_date || dates[1] < sat_date) {
       satellites[i].object.show = false;
-    } else satellites[i].object.show = true;
+      satellites[i].line.show = false;
+    } else {
+      satellites[i].object.show = true;
+      satellites[i].line.show = true;
+    }
   }
 }
 
@@ -221,10 +246,18 @@ select_org.onchange = function () {
       if (this.value == 'Others') {
         if (satellites[i].infos != 'Pas de données') {
           satellites[i].object.show = false;
-        } else satellites[i].object.show = true;
+          satellites[i].line.show = false;
+        } else {
+          satellites[i].object.show = true;
+          satellites[i].line.show = true;
+        }
       } else if (satellites[i].infos.country == this.value) {
         satellites[i].object.show = true;
-      } else satellites[i].object.show = false;
+        satellites[i].line.show = true;
+      } else {
+        satellites[i].object.show = false;
+        satellites[i].line.show = false;
+      }
     }
   }
 }
@@ -236,6 +269,10 @@ search.onchange = function () {
   for (let i = 0; i < satellites.length; i++) {
     if (satellites[i].name.toLowerCase().includes(name)) {
       satellites[i].object.show = true;
-    } else satellites[i].object.show = false;
+      satellites[i].line.show = true;
+    } else {
+      satellites[i].object.show = false;
+      satellites[i].line.show = false;
+    }
   }
 }

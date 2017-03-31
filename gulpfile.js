@@ -23,10 +23,7 @@ gulp.task('css', function () {
     .pipe(cleanCSS({
       compatibility: 'ie8'
     }))
-    .pipe(autoprefixer({
-      browsers: ['last 2 versions'],
-      cascade: false
-    }))
+    .pipe(autoprefixer())
     .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/css/'));
 });

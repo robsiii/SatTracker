@@ -3,7 +3,7 @@
 
   define('ROOT', dirname(__FILE__));
 
-  $Cache = new Cache(ROOT.'/dist/php/temp', 6000);
+  $Cache = new Cache(ROOT.'/dist/php/temp', 120);
 
   require 'dist/php/tracking.php';
 ?>
@@ -61,11 +61,11 @@
       <div class="filter">
         <p>Search</p>
         <div class="form-style">
-          <input type="text" name="name" id="name" placeholder="Satelitte's name">
+          <input type="text" name="name" id="name" placeholder="Satellite's name">
         </div>
         <div class="form-style">
           <select class="text-form" name="Organisation">
-          <option value="Organisation">Organisation</option>
+          <option value="Organisation">All Organisations</option>
           <option value="NASA-Office of Space Science (United States)">NASA-Office of Space Science (United States)</option>
           <option value="National Aeronautics and Space Administration (United States)">National Aeronautics and Space Administration (United States)</option>
           <option value="National Oceanic and Atmospheric Administration (United States)">National Oceanic and Atmospheric Administration (United States)</option>
@@ -73,7 +73,7 @@
        </select>
           <img src="dist/img/next.png" alt="options">
         </div>
-        <label for="year">Launched Year</label>
+        <label for="year">Launching Year</label>
         <div class="range-slider"><span class="year"> 
           <input type="number" value="1959" min="1959" max="2017"/> <strong class="straight"> - </strong>
           <input type="number" value="2017" min="1959" max="2017"/></span>
@@ -82,9 +82,7 @@
         </div>
       </div>
     </div>
-    <div class="exit active">
-      <img src="dist/img/cross.png" id="cross" alt="quit" data-open="true">
-    </div>
+    <button class="btn">Draw lines</button>
     <div id="cesiumContainer">
       <script src="dist/js/script.min.js"></script>
     </div>
